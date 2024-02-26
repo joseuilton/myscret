@@ -40,7 +40,7 @@ Questions
 Answers
 - answerId [uuid, PK]
 - questionId [uuid, FK]
-- userId [uuid, FK]
+- userId [uuid, FK, null]
 - answer [varchar(255), not null]
 - createdAt [timestamp, default now()]
 - updatedAt [timestamp, null]
