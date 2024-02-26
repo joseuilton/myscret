@@ -1,4 +1,4 @@
-export default interface QuestionModel {
+export interface QuestionModel {
   questionId: string;
   userId: string;
   question: string;

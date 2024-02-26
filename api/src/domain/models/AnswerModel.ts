@@ -1,4 +1,4 @@
-export default interface AnswerModel {
+export interface AnswerModel {
   answerId: string;
   userId: string | null;
   questionId: string;

@@ -1,4 +1,4 @@
-export default interface UserModel {
+export interface UserModel {
   userId: string;
   name: string | null;
   pictureUrl: string | null;
