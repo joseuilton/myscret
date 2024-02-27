@@ -132,3 +132,4 @@ dist
 
 **/coverage
 **/.env.development
+api/package-lock.json
