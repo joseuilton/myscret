@@ -4,6 +4,7 @@ import cors from "cors";
 import bodyParser from "body-parser";
 
 import HttpServer from "./HttpServer";
+import UserControllerImpl from "./controller/UserControllerImpl";
 
 export default class ExpressAdapter implements HttpServer {
   private app: express.Application;
@@ -13,9 +14,9 @@ export default class ExpressAdapter implements HttpServer {
     this.app.use(cors());
     this.app.use(bodyParser.json());
 
-    this.app.get("/api", (req, res) => {
-      return res.json({ message: "Hello, World!" });
-    })
+    const userController = new UserControllerImpl();
+
+    this.app.post("/api/users", userController.create);
   }
 
   listen(port: number): void {
