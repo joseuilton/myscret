@@ -4,7 +4,7 @@ import cors from "cors";
 import bodyParser from "body-parser";
 
 import HttpServer from "./HttpServer";
-import UserControllerImpl from "./controller/UserControllerImpl";
+import RouterFactory from "./RouterFactory";
 
 export default class ExpressAdapter implements HttpServer {
   private app: express.Application;
@@ -14,9 +14,9 @@ export default class ExpressAdapter implements HttpServer {
     this.app.use(cors());
     this.app.use(bodyParser.json());
 
-    const userController = new UserControllerImpl();
+    const router = new RouterFactory();
 
-    this.app.post("/api/users", userController.create);
+    this.app.use("/api", router.register());
   }
 
   listen(port: number): void {
