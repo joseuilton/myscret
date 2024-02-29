@@ -15,6 +15,14 @@ export default class QuestionDAO implements DAO<QuestionModel> {
     return savedQuestion;
   }
 
+  async findByUser(userId: string): Promise<QuestionModel[]> {
+    const data = await this.connection<QuestionModel>(this.tablename)
+    .where({ userId })
+    .select("*")
+
+    return data;
+  }
+
   async findById(questionId: string): Promise<QuestionModel | null> {
     const searchedQuestion = await this.connection<QuestionModel>(this.tablename)
       .select("*")

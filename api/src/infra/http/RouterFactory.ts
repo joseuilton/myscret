@@ -18,6 +18,7 @@ export default class RouterFactory {
     const router = Router();
 
     router.post("/users", this.userController.create);
+    router.get("/users/:userId/questions", this.questionController.listByUser);
 
     router.post("/questions", this.questionController.create);
 

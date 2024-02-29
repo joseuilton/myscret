@@ -1,5 +1,6 @@
 import QuestionController from "@application/controller/QuestionController";
 import CreateQuestion from "@application/usecases/questions/CreateQuestion";
+import ListByUserQuestion from "@application/usecases/questions/ListByUserQuestion";
 import { Request, Response } from "express";
 
 export default class QuestionControllerImpl implements QuestionController {
@@ -9,5 +10,12 @@ export default class QuestionControllerImpl implements QuestionController {
     const newQuestion = await new CreateQuestion().execute(questionData);
 
     response.status(201).json({ question: newQuestion });
+  }
+
+  async listByUser(request: Request, response: Response): Promise<void> {
+    const { userId } = request.params;
+    const questions = await new ListByUserQuestion().execute(userId);
+    
+    response.status(200).json({ questions });
   }
 }
