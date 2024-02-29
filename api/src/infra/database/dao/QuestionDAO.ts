@@ -31,4 +31,10 @@ export default class QuestionDAO implements DAO<QuestionModel> {
 
     return searchedQuestion || null;
   }
+
+  async delete(questionId: string): Promise<void> {
+    await this.connection<QuestionModel>(this.tablename)
+      .where({ questionId })
+      .delete();
+  }
 }

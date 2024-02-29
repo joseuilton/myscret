@@ -9,7 +9,7 @@ Project created during the Full-Stack Journey from 1° Semana DDEV
 - [ ] The user should authenticate in the account.
 - [X] The user should create a question.
 - [X] The user should list questions created.
-- [ ] The user should remove create a question.
+- [X] The user should remove create a question.
 - [ ] The user should answer a question anonymously.
 - [ ] Optionally, the user can answer a question with your information.
 - [ ] The user should list answers created for a question.

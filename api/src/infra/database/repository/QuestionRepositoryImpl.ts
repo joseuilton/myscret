@@ -36,4 +36,8 @@ export default class QuestionRepositoryImpl implements QuestionRepository {
     const output = questions.map((question) => this.toEntity(question));
     return output;
   }
+
+  async delete(questionId: string): Promise<void> {
+    await this.questionDAO.delete(questionId);
+  }
 }

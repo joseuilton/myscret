@@ -21,6 +21,7 @@ export default class RouterFactory {
     router.get("/users/:userId/questions", this.questionController.listByUser);
 
     router.post("/questions", this.questionController.create);
+    router.delete("/questions/:questionId", this.questionController.delete);
 
     return router;
   }
