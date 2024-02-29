@@ -3,15 +3,19 @@ import UserControllerImpl from "./controller/UserControllerImpl";
 import { Router } from "express";
 import QuestionController from "@application/controller/QuestionController";
 import QuestionControllerImpl from "./controller/QuestionControllerImpl";
+import AnswerController from "@application/controller/AnswerController";
+import AnswerControllerImpl from "./controller/AnswerControllerImpl";
 
 
 export default class RouterFactory {
-  private userController: UserController;
-  private questionController: QuestionController
+  private readonly userController: UserController;
+  private readonly questionController: QuestionController;
+  private readonly answerController: AnswerController;
 
   constructor() {
     this.userController = new UserControllerImpl();
     this.questionController = new QuestionControllerImpl();
+    this.answerController = new AnswerControllerImpl();
   }
 
   register(): Router {
@@ -22,6 +26,8 @@ export default class RouterFactory {
 
     router.post("/questions", this.questionController.create);
     router.delete("/questions/:questionId", this.questionController.delete);
+
+    router.post("/questions/:questionId/answers", this.answerController.create);
 
     return router;
   }
