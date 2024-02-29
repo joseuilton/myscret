@@ -23,4 +23,12 @@ export default class AnswerDAO implements DAO<AnswerModel> {
 
     return searchedAnswer || null;
   }
+
+  async listByQuestion(questionId: string): Promise<AnswerModel[]> {
+    const searchedAnswers = await this.connection<AnswerModel>(this.tablename)
+      .select("*")
+      .where({ questionId })
+
+    return searchedAnswers;
+  }
 }

@@ -17,8 +17,25 @@ export default class AnswerRepositoryImpl implements AnswerRepository {
     } as AnswerModel;
   }
 
+  toEntity(answer: AnswerModel): AnswerEntity {
+    return new AnswerEntity(
+      answer.answerId,
+      answer.questionId,
+      answer.userId,
+      answer.answer,
+      answer.createdAt,
+      answer.updatedAt
+    );
+  }
+
   async create(answer: AnswerEntity): Promise<AnswerEntity> {
     await this.answerDAO.create(answer);
     return answer;
+  }
+
+  async listByQuestion(questionId: string): Promise<AnswerEntity[]> {
+    const answers = await this.answerDAO.listByQuestion(questionId);
+    const output = answers.map((answer) => this.toEntity(answer));
+    return output;
   }
 }

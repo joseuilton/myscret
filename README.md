@@ -12,7 +12,7 @@ Project created during the Full-Stack Journey from 1° Semana DDEV
 - [X] The user should remove create a question.
 - [X] The user should answer a question anonymously.
 - [X] Optionally, the user can answer a question with your information.
-- [ ] The user should list answers created for a question.
+- [X] The user should list answers created for a question.
 
 ### Database
 - A User can be author of multiple Questions
