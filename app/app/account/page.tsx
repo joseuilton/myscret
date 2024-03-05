@@ -4,11 +4,7 @@ import { Button } from "../components/Button";
 export default function AccountPage() {
   return (
     <main className="container mx-auto px-6">
-      <h1 className="text-lg font-semibold text-center text-secondary-600">
-        Perguntas e mensagens anônimas
-      </h1>
-
-      <h2 className="mt-16 text-lg font-semibold text-center text-secondary-600">
+      <h2 className="text-lg font-semibold text-center text-secondary-600">
         Vamos começar?
       </h2>
 

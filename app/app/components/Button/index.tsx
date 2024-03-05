@@ -13,7 +13,7 @@ type ButtonProps = AsChildProps<
 
 type VariantMapKeys = "primary" | "light";
 const buttonVariantMap = new Map<VariantMapKeys, string>([
-  ["primary", "bg-primary-500 text-white"],
+  ["primary", "bg-primary-500 text-white disabled:bg-primary-200 disabled:text-primary-300"],
   ["light", "bg-white text-secondary-100"]
 ]);
 
