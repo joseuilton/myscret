@@ -8,6 +8,7 @@ type ButtonProps = AsChildProps<
   className?: string;
   variant?: "primary" | "light";
   size?: "regular" | "small";
+  roundedStyle?: "regular" | "pill";
 }
 
 
@@ -19,17 +20,31 @@ const buttonVariantMap = new Map<VariantMapKeys, string>([
 
 type SizeMapKeys = "regular" | "small";
 const buttonSizeMap = new Map<SizeMapKeys, string>([
-  ["regular", "p-4 text-base rounded-xl"],
-  ["small", "p-3 text-xs rounded-xl"]
+  ["regular", "p-4 text-base"],
+  ["small", "p-3 text-xs"]
 ])
 
+type RoundedStyleMapKeys = "regular" | "pill";
+const buttonRoundedStyleMap = new Map<RoundedStyleMapKeys, string>([
+  ["regular", "rounded-xl"],
+  ["pill", "rounded-full"]
+]);
+
 export function Button(
-    { asChild, variant = "primary", size = "regular", className, ...props }: ButtonProps
+    { 
+      asChild, 
+      variant = "primary", 
+      size = "regular", 
+      roundedStyle = "regular", 
+      className,
+      ...props 
+    }: ButtonProps
   ) {
   const buttonClassName = twMerge(
-    "w-full flex justify-center items-center font-semibold",
+    "w-full flex justify-center items-center gap-1.5 font-semibold",
     buttonVariantMap.get(variant),
     buttonSizeMap.get(size),
+    buttonRoundedStyleMap.get(roundedStyle),
     className
   )
 
