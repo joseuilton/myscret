@@ -1,8 +1,6 @@
 import { FiCopy } from "react-icons/fi";
 
-import { Avatar } from "../components/Avatar";
 import { Button } from "../components/Button";
-import { HeaderQuestionCard } from "../components/HeaderQuestionCard";
 import { CreateQuestionCard } from "./components/CreateQuestionCard";
 
 export default function DashPage() {
