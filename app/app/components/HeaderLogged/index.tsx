@@ -41,7 +41,7 @@ export function HeaderLogged() {
           </li>
           <li>
             <Button variant="light" size="small" asChild>
-              <Link href="/dash">
+              <Link href="/dash/messages">
                 <GoInbox size={16} />
                 mensagens
               </Link>
@@ -49,7 +49,7 @@ export function HeaderLogged() {
           </li>
           <li>
             <Button variant="light" size="small" asChild>
-              <Link href="/dash">
+              <Link href="/dash/answers">
                 <FiSend size={16} />
                 respostas
               </Link>
