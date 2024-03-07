@@ -1,14 +1,18 @@
 import React, { FC, InputHTMLAttributes } from "react";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  roundedStyle?: "regular" | "pill";
+  roundedStyle?: "regular" | "large";
 }
 
 export const Input: FC<InputProps> = ({ roundedStyle = "regular", ...props }) => {
+  const roundedStyleClasses = roundedStyle === "regular"
+    ? "p-4 rounded-xl"
+    : "p-5 border-transparent rounded-3xl shadow-sm"
+
   return (
     <input
-      className="w-full p-4 border border-solid border-secondary-400 rounded-xl 
-               bg-white text-base placeholder:text-secondary-100"
+      className={`w-full border border-solid border-secondary-400 bg-white text-base 
+                placeholder:text-secondary-100 ${roundedStyleClasses}`}
       {...props}
     />
   )
