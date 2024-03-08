@@ -49,4 +49,9 @@ export default class UserRepositoryImpl implements UserRepository {
     const user = await this.userDAO.findByEmail(email);
     return user ? this.toEntity(user) : null;
   }
+
+  async findByName(name: string): Promise<UserEntity | null> {
+    const user = await this.userDAO.findByName(name);
+    return user ? this.toEntity(user) : null;  
+  }
 }

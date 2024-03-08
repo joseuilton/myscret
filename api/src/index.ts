@@ -28,4 +28,4 @@ registry.register("QuestionRepository", questionRepository);
 registry.register("AnswerRepository", answerRepository);
 
 const expressAdapter = new ExpressAdapter();
-expressAdapter.listen(3000);
+expressAdapter.listen(Number(process.env.PORT) || 3333);

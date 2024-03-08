@@ -4,8 +4,11 @@ Project created during the Full-Stack Journey from 1° Semana DDEV
 
 ## Requirements
 ### API Features
-- [X] The user should create an account with email and password.
-- [ ] The user should update their profile, only their name and picture.
+- [X] The user should create an account with email, password, username and avatar image.
+    - [X] The user not should create an account with invalid email
+    - [X] The user email should be unique
+    - [X] The username should be unique
+    - [X] The user password should be encrypted using SHA1
 - [ ] The user should authenticate in the account.
 - [X] The user should create a question.
 - [X] The user should list questions created.
@@ -13,6 +16,11 @@ Project created during the Full-Stack Journey from 1° Semana DDEV
 - [X] The user should answer a question anonymously.
 - [X] Optionally, the user can answer a question with your information.
 - [X] The user should list answers created for a question.
+- [ ] The user should list answers for your questions.
+- [ ] The user should list your answers for user's questions
+
+### Business Rules
+
 
 ### Database
 - A User can be author of multiple Questions

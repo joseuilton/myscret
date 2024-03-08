@@ -41,4 +41,13 @@ export default class UserDAO implements DAO<UserModel> {
 
     return searchedUser || null;
   }
+
+  async findByName(name: string): Promise<UserModel | null> {
+    const searchedUser = await this.connection<UserModel>(this.tablename)
+      .select("*")
+      .where({ name })
+      .first();
+
+    return searchedUser || null;
+  }
 }
