@@ -9,15 +9,15 @@ Project created during the Full-Stack Journey from 1° Semana DDEV
     - [X] The user email should be unique
     - [X] The username should be unique
     - [X] The user password should be encrypted using SHA1
-- [ ] The user should authenticate in the account.
+- [X] The user should authenticate in the account.
+- [ ] The user should list answers for your questions.
+- [ ] The user should list your answers for user's questions
 - [X] The user should create a question.
 - [X] The user should list questions created.
 - [X] The user should remove create a question.
 - [X] The user should answer a question anonymously.
 - [X] Optionally, the user can answer a question with your information.
 - [X] The user should list answers created for a question.
-- [ ] The user should list answers for your questions.
-- [ ] The user should list your answers for user's questions
 
 ### Business Rules
 

@@ -1,5 +1,6 @@
 import bcrypt from "bcrypt";
 import UUIDGenerator from "./UUIDGenerator";
+import HashGenerator from "./HashGenerator";
 
 export default class UserEntity {
   constructor(
@@ -16,7 +17,7 @@ export default class UserEntity {
       name: string, email: string, password: string, pictureUrl: string
     ): Promise<UserEntity> {
     const userId = UUIDGenerator.generate();
-    const encryptedPassword = await bcrypt.hash(password, 10);
+    const hashPassword = await HashGenerator.hash(password);
     const createdAt = new Date();
 
     return new UserEntity(
@@ -24,7 +25,7 @@ export default class UserEntity {
       name,
       pictureUrl,
       email,
-      encryptedPassword,
+      hashPassword,
       createdAt,
       null
     );
