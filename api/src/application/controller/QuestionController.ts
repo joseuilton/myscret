@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 
 export default interface QuestionController {
-  create: (request: Request, response: Response) => Promise<void>;
-  listByUser: (request: Request, response: Response) => Promise<void>;
-  delete: (request: Request, response: Response) => Promise<void>;
+  create: (request: any, response: any) => Promise<void>;
+  listByUser: (request: any, response: any) => Promise<void>;
+  delete: (request: any, response: any) => Promise<void>;
 }

@@ -11,6 +11,7 @@ export default class AnswerRepositoryImpl implements AnswerRepository {
       answerId: answer.answerId,
       questionId: answer.questionId,
       userId: answer.userId,
+      pictureUrl: answer.pictureUrl,
       answer: answer.answer,
       createdAt: answer.createdAt,
       updatedAt: answer.updatedAt
@@ -24,7 +25,8 @@ export default class AnswerRepositoryImpl implements AnswerRepository {
       answer.userId,
       answer.answer,
       answer.createdAt,
-      answer.updatedAt
+      answer.updatedAt,
+      answer.pictureUrl
     );
   }
 
@@ -35,6 +37,12 @@ export default class AnswerRepositoryImpl implements AnswerRepository {
 
   async listByQuestion(questionId: string): Promise<AnswerEntity[]> {
     const answers = await this.answerDAO.listByQuestion(questionId);
+    const output = answers.map((answer) => this.toEntity(answer));
+    return output;
+  }
+
+  async listAllByUserQuestions(userId: string): Promise<AnswerEntity[]> {
+    const answers = await this.answerDAO.listAllByUserQuestions(userId);
     const output = answers.map((answer) => this.toEntity(answer));
     return output;
   }

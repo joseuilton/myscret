@@ -28,12 +28,16 @@ export default class RouterFactory {
     router.post("/users", this.userController.create);
     router.post("/users/authenticate", this.userController.authenticate);
     router.get("/users/:userId/questions", this.questionController.listByUser);
-
+    router.get(
+      "/users/answers", TokenValidation.handle, this.answerController.listByUserQuestions
+    );
+    
     router.post("/questions", TokenValidation.handle, this.questionController.create);
     router.delete("/questions/:questionId", TokenValidation.handle, this.questionController.delete);
-
+    
     router.get("/questions/:questionId/answers", this.answerController.listByQuestion);
     router.post("/questions/:questionId/answers", this.answerController.create);
+
 
     router.use(ErrorsMiddleware.handle);
 

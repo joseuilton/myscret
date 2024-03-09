@@ -31,4 +31,14 @@ export default class AnswerDAO implements DAO<AnswerModel> {
 
     return searchedAnswers;
   }
+
+  async listAllByUserQuestions(userId: string): Promise<AnswerModel[]> {
+    const searchedAnswers = await this.connection<AnswerModel>(this.tablename)
+      .select("answers.*", "users.pictureUrl")
+      .join("questions", "answers.questionId", "=", "questions.questionId")
+      .join("users", "questions.userId", "=", "users.userId")
+      .where("users.userId", userId);
+
+    return searchedAnswers;
+  }
 }
