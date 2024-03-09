@@ -6,6 +6,9 @@ import QuestionController from "@application/controller/QuestionController";
 import QuestionControllerImpl from "./controller/QuestionControllerImpl";
 import AnswerController from "@application/controller/AnswerController";
 import AnswerControllerImpl from "./controller/AnswerControllerImpl";
+import tokenValidation from "./middlewares/TokenValidation";
+import TokenValidation from "./middlewares/TokenValidation";
+import ErrorsMiddleware from "./middlewares/ErrorsMiddleware";
 
 
 export default class RouterFactory {
@@ -26,11 +29,13 @@ export default class RouterFactory {
     router.post("/users/authenticate", this.userController.authenticate);
     router.get("/users/:userId/questions", this.questionController.listByUser);
 
-    router.post("/questions", this.questionController.create);
-    router.delete("/questions/:questionId", this.questionController.delete);
+    router.post("/questions", TokenValidation.handle, this.questionController.create);
+    router.delete("/questions/:questionId", TokenValidation.handle, this.questionController.delete);
 
     router.get("/questions/:questionId/answers", this.answerController.listByQuestion);
     router.post("/questions/:questionId/answers", this.answerController.create);
+
+    router.use(ErrorsMiddleware.handle);
 
     return router;
   }

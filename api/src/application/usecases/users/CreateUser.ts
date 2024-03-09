@@ -1,3 +1,4 @@
+import HttpError from "@application/errors/HttpError";
 import UserRepository from "@application/repository/UserRepository";
 import UserEntity from "@domain/entities/UserEntity";
 import Registry from "@infra/di/Registry";
@@ -28,20 +29,20 @@ export default class CreateUser {
   }
 
   async validate({ name, email, password, pictureUrl }: InputCreateUser): Promise<void> {
-    if (!name) throw new Error("name field is required.");
-    if (!email) throw new Error("email field is required.");
-    if (!password) throw new Error("password field is required");
-    if (!pictureUrl) throw new Error("picture url field is required");
+    if (!name) throw new HttpError("name field is required.", 400);
+    if (!email) throw new HttpError("email field is required.", 400);
+    if (!password) throw new HttpError("password field is required", 400);
+    if (!pictureUrl) throw new HttpError("picture url field is required", 400);
 
     const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
 
-    if (!emailRegex.test(email)) throw new Error("Invalid email.");
+    if (!emailRegex.test(email)) throw new HttpError("Invalid email.", 400);
 
     const searchedByEmail = await this.userRepository.findByEmail(email);
-    if (searchedByEmail) throw new Error("User with this email already exists.");
+    if (searchedByEmail) throw new HttpError("User with this email already exists.", 400);
 
     const searchedByName = await this.userRepository.findByName(name);
-    if (searchedByName) throw new Error("User with this username already exists.");
+    if (searchedByName) throw new HttpError("User with this username already exists.", 400);
   }
 }
 
