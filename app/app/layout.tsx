@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Exo_2 } from "next/font/google";
+import { ToastContainer } from "react-toastify";
+
+import "react-toastify/ReactToastify.min.css"
 import "./globals.css";
 
 const exo2 = Exo_2({
@@ -20,11 +23,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-br">
+    <html className="min-h-svh" lang="pt-br">
       <body
-        className={`${exo2.className} bg-gradient-to-b from-primary-200 to-secondary-800 to-20%`}
+        className={`${exo2.className} min-h-max bg-gradient-to-b from-primary-200 to-secondary-800 to-20% bg-no-repeat`}
       >
         {children}
+        <ToastContainer />
       </body>
     </html>
   );

@@ -41,7 +41,7 @@ export function Button(
     }: ButtonProps
   ) {
   const buttonClassName = twMerge(
-    "w-full flex justify-center items-center gap-1.5 font-semibold",
+    "w-full flex justify-center items-center gap-1.5 font-semibold disabled:cursos-not-allowed",
     buttonVariantMap.get(variant),
     buttonSizeMap.get(size),
     buttonRoundedStyleMap.get(roundedStyle),
