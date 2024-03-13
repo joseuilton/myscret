@@ -41,7 +41,7 @@ export default class RouterFactory {
 
     router.get("/answers/:answerId", TokenValidation.handle, this.answerController.getAnswer);
 
-    // router.use(ErrorsMiddleware.handle);
+    router.use(ErrorsMiddleware.handle);
 
     return router;
   }

@@ -18,11 +18,11 @@ export default class AuthenticateUser {
 
     const user = await this.userRepository.findByEmail(data.email);
 
-    if (!user) throw new HttpError("User with this email does not exists.", 404);
+    if (!user) throw new HttpError("User with this email does not exists.", 400);
 
     const isEqualPassword = await bcrypt.compare(data.password, user.password);
 
-    if (!isEqualPassword) throw new HttpError("Incorrect password.", 404);
+    if (!isEqualPassword) throw new HttpError("Incorrect password.", 400);
 
     try {
       const token = jwt.sign(

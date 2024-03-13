@@ -27,8 +27,8 @@ export default function RootLayout({
       <body
         className={`${exo2.className} min-h-max bg-gradient-to-b from-primary-200 to-secondary-800 to-20% bg-no-repeat`}
       >
-        {children}
         <ToastContainer />
+        {children}
       </body>
     </html>
   );
