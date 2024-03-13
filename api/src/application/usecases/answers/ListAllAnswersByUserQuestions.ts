@@ -1,4 +1,3 @@
-import HttpError from "@application/errors/HttpError";
 import AnswerRepository from "@application/repository/AnswerRepository";
 import Registry from "@infra/di/Registry";
 
@@ -14,9 +13,12 @@ export default class ListAllAnswersByUserQuestions {
     const answers = await this.answersRepository.listAllByUserQuestions(userId);
     const output = answers.map((answer) => ({
       answerId: answer.answerId,
-      questionId: answer.questionId,
-      pictureUrl: answer.pictureUrl,
-      answer: answer.answer,
+      user: answer.user
+        ? {
+          pictureUrl: answer.user?.pictureUrl
+        }
+        : null,
+      viewedByQuestionOwner: answer.viewedByQuestionOwner,
       createdAt: answer.createdAt
     } as OutputListAllAnswersByUserQuestions))
 
@@ -26,8 +28,7 @@ export default class ListAllAnswersByUserQuestions {
 
 type OutputListAllAnswersByUserQuestions = {
   answerId: string;
-  questionId: string;
-  pictureUrl: string | null;
-  answer: string;
+  user: { pictureUrl: string } | null;
+  viewedByQuestionOwner: boolean;
   createdAt: Date;
 }

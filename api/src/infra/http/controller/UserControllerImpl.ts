@@ -5,8 +5,8 @@ import AuthenticateUser from "@application/usecases/users/AuthenticateUser";
 
 export default class UserControllerImpl implements UserController {
   async create(request: Request, response: Response): Promise<void> {
-    const { name, pictureUrl, email, password } = request.body;
-    const userData = { name, pictureUrl, email, password };
+    const { name, username, pictureUrl, email, password } = request.body;
+    const userData = { name, username, pictureUrl, email, password };
     const createdUser = await new CreateUser().execute(userData);
 
     response.status(201).json({ user: createdUser });

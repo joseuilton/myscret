@@ -6,6 +6,7 @@ export default class UserEntity {
   constructor(
     readonly userId: string,
     readonly name: string,
+    readonly username: string,
     readonly pictureUrl: string,
     readonly email: string,
     readonly password: string,
@@ -14,7 +15,7 @@ export default class UserEntity {
   ) {}
 
   static async create(
-      name: string, email: string, password: string, pictureUrl: string
+      name: string, username: string, email: string, password: string, pictureUrl: string
     ): Promise<UserEntity> {
     const userId = UUIDGenerator.generate();
     const hashPassword = await HashGenerator.hash(password);
@@ -23,6 +24,7 @@ export default class UserEntity {
     return new UserEntity(
       userId,
       name,
+      username,
       pictureUrl,
       email,
       hashPassword,

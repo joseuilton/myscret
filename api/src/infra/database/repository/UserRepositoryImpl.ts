@@ -9,8 +9,9 @@ export default class UserRepositoryImpl implements UserRepository {
   toEntity(user: UserModel): UserEntity {
     return new UserEntity(
       user.userId,
-      user.name,
-      user.pictureUrl,
+      user.name!,
+      user.username,
+      user.pictureUrl!,
       user.email,
       user.password,
       user.createdAt,
@@ -22,6 +23,7 @@ export default class UserRepositoryImpl implements UserRepository {
     return {
       userId: user.userId,
       name: user.name,
+      username: user.username,
       pictureUrl: user.pictureUrl,
       email: user.email,
       password: user.password,
@@ -50,8 +52,8 @@ export default class UserRepositoryImpl implements UserRepository {
     return user ? this.toEntity(user) : null;
   }
 
-  async findByName(name: string): Promise<UserEntity | null> {
-    const user = await this.userDAO.findByName(name);
+  async findByUsername(username: string): Promise<UserEntity | null> {
+    const user = await this.userDAO.findByUsername(username);
     return user ? this.toEntity(user) : null;  
   }
 }

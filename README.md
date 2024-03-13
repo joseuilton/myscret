@@ -11,7 +11,7 @@ Project created during the Full-Stack Journey from 1° Semana DDEV
     - [X] The user password should be encrypted using SHA1
 - [X] The user should authenticate in the account.
 - [X] The user should list answers for your questions.
-- [ ] The user should list your answers for user's questions
+- [X] The user should list your answers for user's questions
 - [X] The user should create a question.
 - [X] The user should list questions created.
 - [X] The user should remove create a question.

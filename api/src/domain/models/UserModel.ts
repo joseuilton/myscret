@@ -1,9 +1,10 @@
 export interface UserModel {
   userId: string;
-  name: string | null;
-  pictureUrl: string | null;
+  name: string;
+  username: string;
+  pictureUrl: string;
   email: string;
   password: string;
   createdAt: Date;
-  updatedAt: Date | null;
+  updatedAt: Date;
 }

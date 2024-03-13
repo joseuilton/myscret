@@ -5,5 +5,5 @@ export default interface UserRepository {
   update(user: UserEntity): Promise<UserEntity>;
   findById(id: string): Promise<UserEntity | null>;
   findByEmail(email: string): Promise<UserEntity | null>;
-  findByName(name: string): Promise<UserEntity | null>;
+  findByUsername(username: string): Promise<UserEntity | null>;
 }

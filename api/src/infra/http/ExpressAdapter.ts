@@ -2,7 +2,6 @@ import express from "express";
 import "express-async-errors";
 import cors from "cors";
 import bodyParser from "body-parser";
-import session from "express-session";
 
 import HttpServer from "./HttpServer";
 import RouterFactory from "./RouterFactory";

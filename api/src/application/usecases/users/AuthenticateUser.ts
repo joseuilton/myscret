@@ -12,7 +12,7 @@ export default class AuthenticateUser {
     this.userRepository = registry.resolve("UserRepository");
   }
 
-  async execute(data: InputAuthenticateUser): Promise<OutputAuthenticateUser> {
+  async execute(data: InputAuthenticateUser): Promise<string> {
     if (!data.email) throw new HttpError("Email field is required.", 400);
     if (!data.password) throw new HttpError("Password field is required.", 400);
 
@@ -29,6 +29,7 @@ export default class AuthenticateUser {
         {
           userId: user.userId,
           name: user.name,
+          username: user.username,
           email: user.email,
           pictureUrl: user.pictureUrl,
         },
@@ -36,7 +37,7 @@ export default class AuthenticateUser {
         { expiresIn: "7d" }
       );
 
-      return { token };
+      return token;
     } catch (err) {
       throw new HttpError("Something wents wrong, please try again later.", 500);
     }
@@ -46,8 +47,4 @@ export default class AuthenticateUser {
 type InputAuthenticateUser = {
   email: string;
   password: string;
-}
-
-type OutputAuthenticateUser = {
-  token: string;
 }

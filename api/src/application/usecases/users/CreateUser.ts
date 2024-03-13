@@ -15,21 +15,23 @@ export default class CreateUser {
     await this.validate(input);
 
     const userEntity = await UserEntity.create(
-      input.name, input.email, input.password, input.pictureUrl
+      input.name, input.username, input.email, input.password, input.pictureUrl
     );
     await this.userRepository.create(userEntity);
 
     return {
       userId: userEntity.userId,
       name: userEntity.name,
+      username: userEntity.username,
       email: userEntity.email,
       pictureUrl: userEntity.pictureUrl,
       createdAt: userEntity.createdAt
     }
   }
 
-  async validate({ name, email, password, pictureUrl }: InputCreateUser): Promise<void> {
+  async validate({ name, username, email, password, pictureUrl }: InputCreateUser): Promise<void> {
     if (!name) throw new HttpError("name field is required.", 400);
+    if (!username) throw new HttpError("username field is required", 400);
     if (!email) throw new HttpError("email field is required.", 400);
     if (!password) throw new HttpError("password field is required", 400);
     if (!pictureUrl) throw new HttpError("picture url field is required", 400);
@@ -41,13 +43,14 @@ export default class CreateUser {
     const searchedByEmail = await this.userRepository.findByEmail(email);
     if (searchedByEmail) throw new HttpError("User with this email already exists.", 400);
 
-    const searchedByName = await this.userRepository.findByName(name);
-    if (searchedByName) throw new HttpError("User with this username already exists.", 400);
+    const searchedByUsername = await this.userRepository.findByUsername(username);
+    if (searchedByUsername) throw new HttpError("User with this username already exists.", 400);
   }
 }
 
 type InputCreateUser = {
   name: string;
+  username: string;
   email: string;
   password: string;
   pictureUrl: string;
@@ -56,6 +59,7 @@ type InputCreateUser = {
 type OutputCreateUser = {
   userId: string;
   name: string;
+  username: string;
   email: string;
   pictureUrl: string;
   createdAt: Date;
