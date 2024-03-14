@@ -2,7 +2,7 @@ import { Avatar } from "../Avatar";
 
 interface AnswerCardProps {
   profile: {
-    imageUrl: string;
+    pictureUrl: string;
     name: string;
     username: string;
   };
@@ -19,7 +19,7 @@ export function AnswerCard({ profile, profilePosition, question, answer }: Answe
   return (
     <div className="pt-5 pb-4 px-4 bg-white rounded-xl shadow relative">
       <div className={`flex items-center gap-3 absolute ${profileHeaderClasses}`}>
-        <Avatar imageUrl={profile.imageUrl} alt={profile.name} />
+        <Avatar imageUrl={profile.pictureUrl} alt={profile.name} />
         <div className={profilePosition === "top" ? "-mt-2" : "mt-2"}>
           <h3 className="text-sm text-primary-500 font-semibold">
             {profile.name}
