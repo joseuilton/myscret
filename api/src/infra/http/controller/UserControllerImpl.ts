@@ -19,4 +19,9 @@ export default class UserControllerImpl implements UserController {
 
     response.status(200).json({ token });
   }
+
+  async get(request: Request, response: Response): Promise<void> {
+    const user = JSON.parse(String(request.headers["user"]));
+    response.status(200).json({ user });
+  }
 }

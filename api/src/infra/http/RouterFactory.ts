@@ -26,6 +26,8 @@ export default class RouterFactory {
     const router = Router();
 
     router.post("/users", this.userController.create);
+    router.get("/users", TokenValidation.handle, this.userController.get);
+
     router.post("/users/authenticate", this.userController.authenticate);
     router.get("/users/:userId/questions", this.questionController.listByUser);
     router.get("/users/answers", TokenValidation.handle, this.answerController.listByUser);
