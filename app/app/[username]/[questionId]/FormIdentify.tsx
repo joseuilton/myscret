@@ -1,9 +1,24 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 
-export function FormIdentify() {
+interface FormIdentifyProps {
+  username: string;
+  onChangeUsername: (data: string) => void;
+  onNextStep: () => void;
+}
+
+export function FormIdentify({ username, onChangeUsername, onNextStep }: FormIdentifyProps) {
   const [isIdentified, setIsIdentified] = useState(false);
+
+  useEffect(() => {
+    onChangeUsername("");
+  }, [isIdentified])
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    onNextStep();
+  }
 
   return (
     <div>
@@ -11,7 +26,7 @@ export function FormIdentify() {
         Você quer se identificar?
       </h1>
 
-      <form className="flex flex-col gap-5">
+      <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
         <div
           className="flex items-center gap-2.5 p-5 bg-white text-secondary-500 rounded-3xl shadow-sm"
         >
@@ -33,13 +48,20 @@ export function FormIdentify() {
               roundedStyle="large"
               name="username"
               id="username"
-              placeholder="@informe_seu_usuario"
+              placeholder="informe_seu_usuario"
+              value={username}
+              onChange={(e) => onChangeUsername(e.target.value)}
             />
           </div>
         )}
 
 
-        <Button type="submit" disabled>Enviar</Button>
+        <Button
+          type="submit"
+          disabled={isIdentified && username.length === 0}
+        >
+          Enviar
+        </Button>
       </form>
     </div>
   )
