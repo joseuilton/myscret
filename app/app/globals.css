@@ -6,3 +6,8 @@ body {
   height: 100vh;
   font-family: var(--font-exo2);
 }
+
+
+li.slick-active a {
+  @apply w-6 bg-primary-500;
+}

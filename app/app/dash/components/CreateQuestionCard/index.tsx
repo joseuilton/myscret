@@ -14,7 +14,7 @@ export function CreateQuestionCard({ imageUrl, question }: CreateQuestionCardPro
         </div>
       </div>
       <div className="pt-4 pb-8 px-4 text-sm text-center text-secondary-600 font-semibold">
-        <p>Envie-me uma mensagem anônima!</p>
+        <p>{question}</p>
       </div>
     </div>
   )

@@ -1,4 +1,4 @@
-import HeaderVisitor from "../components/HeaderVisitor";
+import HeaderVisitor from "../../components/HeaderVisitor";
 import { FormAnswer } from "./FormAnswer";
 
 export default function CreateAnswerForQuestion() {

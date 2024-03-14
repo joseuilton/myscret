@@ -1,6 +1,7 @@
 "use client";
 import { Button } from "@/app/components/Button";
 import { Input } from "@/app/components/Input";
+import { useAuth } from "@/app/contexts/AuthContext";
 import api from "@/app/lib/axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -14,6 +15,7 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
+  const authContext = useAuth();
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -31,13 +33,8 @@ export default function LoginPage() {
     }
 
     try {
-      const response = await api.post("/users/authenticate", {
-        email,
-        password
-      });
-
+      await authContext.Login({ email, password });
       toast.success("Login realizado com sucesso!");
-      localStorage.setItem("MyScret-JWT", response.data.token);
       router.push("/dash");
       return;
     } catch (err: any) {
