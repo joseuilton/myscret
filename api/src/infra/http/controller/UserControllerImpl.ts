@@ -15,9 +15,9 @@ export default class UserControllerImpl implements UserController {
   async authenticate(request: Request, response: Response): Promise<void> {
     const { email, password } = request.body;
     const loginData = { email, password };
-    const token = await new AuthenticateUser().execute(loginData);
+    const output = await new AuthenticateUser().execute(loginData);
 
-    response.status(200).json({ token });
+    response.status(200).json(output);
   }
 
   async get(request: Request, response: Response): Promise<void> {
