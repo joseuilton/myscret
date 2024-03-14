@@ -33,6 +33,7 @@ export default class RouterFactory {
     router.get("/users/answers", TokenValidation.handle, this.answerController.listByUser);
 
     router.post("/questions", TokenValidation.handle, this.questionController.create);
+    router.get("/questions/:questionId", this.questionController.get)
     router.delete("/questions/:questionId", TokenValidation.handle, this.questionController.delete);
 
     router.post("/questions/:questionId/answers", this.answerController.create);

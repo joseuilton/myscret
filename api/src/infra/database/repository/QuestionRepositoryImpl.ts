@@ -1,7 +1,8 @@
 import QuestionRepository from "@application/repository/QuestionRepository";
 import QuestionEntity from "@domain/entities/QuestionEntity";
 import QuestionDAO from "../dao/QuestionDAO";
-import { QuestionModel } from "@domain/models";
+import { QuestionModel, UserModel } from "@domain/models";
+import UserEntity from "@domain/entities/UserEntity";
 
 export default class QuestionRepositoryImpl implements QuestionRepository {
   constructor(private readonly questionDAO: QuestionDAO) {}
@@ -16,13 +17,17 @@ export default class QuestionRepositoryImpl implements QuestionRepository {
     } as QuestionModel;
   }
 
-  toEntity(question: QuestionModel): QuestionEntity {
+  toEntity({ question,  user }: { question: QuestionModel, user?: UserModel }): QuestionEntity {
     return new QuestionEntity(
       question.questionId,
       question.userId,
       question.question,
       question.createdAt,
-      question.updatedAt
+      question.updatedAt,
+      user && new UserEntity(
+        user.userId, user.name, user.username, user.pictureUrl, user.email, "", user.createdAt, 
+        user.updatedAt
+      )
     );
   }
 
@@ -31,9 +36,14 @@ export default class QuestionRepositoryImpl implements QuestionRepository {
     return question;
   }
 
+  async get(questionId: string): Promise<QuestionEntity | null> {
+    const data = await this.questionDAO.findById(questionId);
+    return data ? this.toEntity(data) : null;
+  }
+
   async listByUser(userId: string): Promise<QuestionEntity[]> {
     const questions = await this.questionDAO.findByUser(userId);
-    const output = questions.map((question) => this.toEntity(question));
+    const output = questions.map((question) => this.toEntity({ question }));
     return output;
   }
 
