@@ -73,8 +73,8 @@ export default class AnswerDAO implements DAO<AnswerModel> {
     const updatedAnswer = await this.connection<AnswerModel>(this.tablename)
       .where("answerId", answerId)
       .update({
-          viewedByQuestionOwner: true,
-          updatedAt: new Date() 
+        viewedByQuestionOwner: true,
+        updatedAt: new Date()
       })
       .returning("*");
 
@@ -92,10 +92,19 @@ export default class AnswerDAO implements DAO<AnswerModel> {
 
   async listAllByUserQuestions(userId: string): Promise<{ answer: AnswerModel, user: UserModel | null }[]> {
     const searchedAnswers = await this.connection(this.tablename)
+      .select(
+        "answers.*",
+        "users.userId as usersUserId",
+        "users.name as usersName",
+        "users.username as usersUsername",
+        "users.pictureUrl as usersPictureUrl",
+        "users.email as usersEmail",
+        "users.createdAt as usersCreatedAt",
+        "users.updatedAt as usersUpdatedAt"
+      )
       .join("questions", "answers.questionId", "=", "questions.questionId")
       .leftJoin("users", "answers.userId", "=", "users.userId")
-      .where("questions.userId", userId)
-      .select("answers.*", "users.*")
+      .where("questions.userId", "=", userId)
 
     const output = searchedAnswers.map((line) => ({
       answer: {
@@ -109,14 +118,14 @@ export default class AnswerDAO implements DAO<AnswerModel> {
       } as AnswerModel,
       user: line.userId
         ? {
-          userId: line.userId,
-          name: line.name,
-          username: line.username,
-          pictureUrl: line.pictureUrl,
-          email: line.email,
-          password: line.password,
-          createdAt: line.createdAt,
-          updatedAt: line.updatedAt
+          userId: line.usersUserId,
+          name: line.usersName,
+          username: line.usersUsername,
+          pictureUrl: line.usersPictureUrl,
+          email: line.usersEmail,
+          password: "",
+          createdAt: line.usersCreatedAt,
+          updatedAt: line.usersUpdatedAt
         } as UserModel
         : null
     }))
