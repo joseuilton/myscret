@@ -3,10 +3,10 @@ import { FiFileText, FiMail } from "react-icons/fi";
 
 interface MessageItemProps {
   readStatus: boolean;
-  imageUrl?: string | null;
+  pictureUrl?: string | null;
 }
 
-export function MessageItem({ readStatus, imageUrl = null }: MessageItemProps) {
+export function MessageItem({ readStatus, pictureUrl = null }: MessageItemProps) {
   const containerReadStatusClass = readStatus
     ? "bg-white"
     : "bg-gradient-to-br from-white to-secondary-400";
@@ -17,11 +17,11 @@ export function MessageItem({ readStatus, imageUrl = null }: MessageItemProps) {
                  rounded-full shadow relative ${containerReadStatusClass}`}
     >
       <div className="text-secondary-500">
-        {imageUrl ? (
+        {pictureUrl ? (
           <>
             <Image
               className={`${!readStatus && "blur-[2px]"}`}
-              src={imageUrl}
+              src={pictureUrl}
               alt="Avatar"
               fill
               style={{
