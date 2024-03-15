@@ -1,4 +1,4 @@
-import UUIDGenerator from "@domain/entities/UUIDGenerator";
+import "dotenv/config"
 import KnexAdapter from "@infra/database/KnexAdapter";
 import AnswerDAO from "@infra/database/dao/AnswerDAO";
 import QuestionDAO from "@infra/database/dao/QuestionDAO";
