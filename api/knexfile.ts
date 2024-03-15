@@ -1,25 +1,26 @@
+import "dotenv/config"
 import type { Knex } from "knex";
 
 const config: { [key: string]: Knex.Config } = {
   development: {
-    client: "pg",
+    client: process.env.DB_CLIENT,
     connection: {
-      host: "localhost",
-      database: "mysecretdb",
-      user: "postgres",
-      password: "postgres"
+      host: process.env.DB_HOSTNAME,
+      database: process.env.DB_DATABASE,
+      user: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD
     },
     migrations: {
       directory: "./migrations"
     }
   },
   production: {
-    client: "pg",
+    client: process.env.DB_CLIENT,
     connection: {
-      host: "localhost",
-      database: "mysecretdb",
-      userName: "postgres",
-      password: "postgres"
+      host: process.env.DB_HOSTNAME,
+      database: process.env.DB_DATABASE,
+      user: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD
     },
     migrations: {
       directory: "./migrations"

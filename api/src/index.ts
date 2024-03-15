@@ -7,10 +7,7 @@ import AnswerRepositoryImpl from "@infra/database/repository/AnswerRepositoryImp
 import QuestionRepositoryImpl from "@infra/database/repository/QuestionRepositoryImpl";
 import UserRepositoryImpl from "@infra/database/repository/UserRepositoryImpl";
 import Registry from "@infra/di/Registry";
-import LoadEnv from "@infra/helpers/LoadEnv";
 import ExpressAdapter from "@infra/http/ExpressAdapter";
-
-LoadEnv.load();
 
 const knexAdapter = new KnexAdapter();
 knexAdapter.connect();

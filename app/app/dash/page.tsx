@@ -68,7 +68,7 @@ export default function DashPage() {
           arrows={false}
         >
           {questions.map((question, index) => (
-            <div className="pt-8" key={index}>
+            <div className="pt-8 px-4" key={index}>
               <CreateQuestionCard
                 imageUrl={user?.pictureUrl!}
                 question={question}
