@@ -11,7 +11,11 @@ export default class ExpressAdapter implements HttpServer {
 
   constructor() {
     this.app = express();
-    this.app.use(cors());
+    this.app.use(cors({
+      credentials: true,
+      origin: "*",
+      methods: ["GET", "POST", "PUT", "DELETE"],
+    }));
     this.app.use(bodyParser.json());
 
     const router = new RouterFactory();

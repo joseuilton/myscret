@@ -22,7 +22,6 @@ export default function DashMessagesPage() {
 
       try {
         const response = await api.get("/questions/answers");
-        console.log(response.data);
         if (response.status === 200) {
           const answersData = response.data.answers
           setMessages(answersData.map((answer: any) => ({
