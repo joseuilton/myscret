@@ -30,7 +30,6 @@ export default function DashMessagePage({ params }: DashMessagePageProps) {
     async function fetchData() {
       try {
         if (!user) return;
-        console.log(params.answerId);
         const response = await api.get(`/answers/${params.answerId}`);
 
         if (response.status === 200) {
