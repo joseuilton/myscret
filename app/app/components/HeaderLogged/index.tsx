@@ -21,7 +21,7 @@ export function HeaderLogged() {
   }
 
   return (
-    <header className="container px-7 pt-11">
+    <header className="max-w-screen-sm mx-auto px-7 pt-11">
       <div className="flex justify-between items-center">
         <Button
           className="w-auto"

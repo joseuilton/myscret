@@ -43,7 +43,7 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="container mx-auto px-6">
+    <main className="max-w-screen-sm mx-auto px-6">
       <form className="flex flex-col gap-4" onSubmit={handleSubmit} noValidate>
         <Input
           type="email"

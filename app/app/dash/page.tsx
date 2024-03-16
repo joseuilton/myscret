@@ -45,7 +45,7 @@ export default function DashPage() {
   }
 
   return (
-    <main className="container flex flex-col gap-5 justify-center px-7 mt-8">
+    <main className="max-w-screen-sm mx-auto flex flex-col gap-5 justify-center px-7 mt-8">
       <h1 className="text-base text-center font-semibold text-secondary-100">
         O que você quer (ou não) saber
       </h1>

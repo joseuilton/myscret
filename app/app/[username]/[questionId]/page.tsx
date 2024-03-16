@@ -75,7 +75,7 @@ export default function CreateAnswerForQuestion({ params }: CreateAnswerForQuest
   return (
     <>
       <HeaderVisitor />
-      <main className="container px-7">
+      <main className="max-w-screen-sm mx-auto px-7">
         { step === 0 && (question && <FormAnswer
             question={question}
             answer={answer}

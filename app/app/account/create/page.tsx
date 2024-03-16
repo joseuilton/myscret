@@ -74,7 +74,7 @@ export default function AccountCreatePage() {
   }
 
   return (
-    <main className="container mx-auto px-6">
+    <main className="max-w-screen-sm mx-auto px-6">
       {currentStep === 1 && (
         <FormEmail
           email={email}

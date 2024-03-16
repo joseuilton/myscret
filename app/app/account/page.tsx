@@ -3,7 +3,7 @@ import { Button } from "../components/Button";
 
 export default function AccountPage() {
   return (
-    <main className="container mx-auto px-6">
+    <main className="max-w-screen-sm mx-auto px-6">
       <h2 className="text-lg font-semibold text-center text-secondary-600">
         Vamos começar?
       </h2>
