@@ -15,10 +15,13 @@ export default function AccountCreatePage() {
   const [username, setUsername] = useState("");
   const [avatar, setAvatar] = useState("");
   const [currentStep, setCurrentStep] = useState(1);
+  const [isSubmitLoading, setIsSubmitLoading] = useState(false);
   const router = useRouter();
 
   async function handleNextStep() {
     if (currentStep === 3) {
+      setIsSubmitLoading(true);
+
       try {
         const response = await api.post("/users", {
           name,
@@ -38,6 +41,8 @@ export default function AccountCreatePage() {
         return;
       } catch (err) {
         toast.error("Algo deu errado, por favor tente novamente mais tarde!");
+      } finally {
+        setIsSubmitLoading(false);
       }
     }
 
@@ -94,6 +99,7 @@ export default function AccountCreatePage() {
           name={name}
           username={username}
           avatar={avatar}
+          isSubmitLoading={isSubmitLoading}
           onChangeName={handleChangeName}
           onChangeUsername={handleChangeUsername}
           onChangeAvatar={handleChangeAvatar}

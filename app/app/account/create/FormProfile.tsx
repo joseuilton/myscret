@@ -4,6 +4,7 @@ import { Button } from "@/app/components/Button";
 import { Input } from "@/app/components/Input";
 import { FormEvent, useEffect, useState } from "react";
 import { FiRefreshCcw } from "react-icons/fi";
+import { ImSpinner8 } from "react-icons/im";
 import { toast } from "react-toastify";
 import { z } from "zod";
 
@@ -34,6 +35,7 @@ interface FormProfileProps {
   name: string;
   username: string;
   avatar: string;
+  isSubmitLoading: boolean;
   onChangeName: (data: string) => void;
   onChangeUsername: (data: string) => void;
   onChangeAvatar: (data: string) => void;
@@ -49,6 +51,7 @@ export function FormProfile(
     name,
     username,
     avatar,
+    isSubmitLoading,
     onChangeName,
     onChangeUsername,
     onChangeAvatar,
@@ -141,8 +144,12 @@ export function FormProfile(
       <Button
         className="uppercase"
         type="submit"
-        disabled={name.length === 0 || username.length === 0 || !avatarOptions.includes(avatar)}
-      >
+        disabled={
+          name.length === 0 || username.length === 0 || !avatarOptions.includes(avatar) || 
+          isSubmitLoading
+        }
+      > 
+        {isSubmitLoading && <ImSpinner8 className="animate-spin" size={24} />}
         Cadastrar
       </Button>
     </form>

@@ -6,6 +6,7 @@ import api from "@/app/lib/axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
+import { ImSpinner8 } from "react-icons/im";
 import { toast } from "react-toastify";
 import { z } from "zod";
 
@@ -14,6 +15,7 @@ const formSchema = z.string().email("Email inválido!");
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isSubmitLoading, setIsSubmitLoading] = useState(false);
   const router = useRouter();
   const authContext = useAuth();
 
@@ -32,6 +34,8 @@ export default function LoginPage() {
       return;
     }
 
+    setIsSubmitLoading(true);
+
     try {
       await authContext.Login({ email, password });
       toast.success("Login realizado com sucesso!");
@@ -39,6 +43,8 @@ export default function LoginPage() {
       return;
     } catch (err: any) {
       toast.error(err.response.data.messageError);
+    } finally {
+      setIsSubmitLoading(false);
     }
   }
 
@@ -60,8 +66,9 @@ export default function LoginPage() {
         <Button
           className="uppercase"
           type="submit"
-          disabled={email.length === 0 || password.length === 0}
+          disabled={email.length === 0 || password.length === 0 || isSubmitLoading}
         >
+          {isSubmitLoading && <ImSpinner8 className="animate-spin" size={24} />}
           Acessar minha conta
         </Button>
       </form>

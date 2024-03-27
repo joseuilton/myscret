@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react"
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
+import { ImSpinner8 } from "react-icons/im";
 
 interface FormIdentifyProps {
   username: string;
+  isSubmitLoading: boolean;
   onChangeUsername: (data: string) => void;
   onNextStep: () => void;
 }
 
-export function FormIdentify({ username, onChangeUsername, onNextStep }: FormIdentifyProps) {
+export function FormIdentify(
+  { username, isSubmitLoading, onChangeUsername, onNextStep }: FormIdentifyProps
+) {
   const [isIdentified, setIsIdentified] = useState(false);
 
   useEffect(() => {
@@ -58,8 +62,9 @@ export function FormIdentify({ username, onChangeUsername, onNextStep }: FormIde
 
         <Button
           type="submit"
-          disabled={isIdentified && username.length === 0}
+          disabled={(isIdentified && username.length === 0) || isSubmitLoading}
         >
+          {isSubmitLoading && <ImSpinner8 className="animate-spin" size={24} />}
           Enviar
         </Button>
       </form>

@@ -8,6 +8,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { useState } from "react";
 import api from "../lib/axios";
 import { toast } from "react-toastify";
+import { ImSpinner8 } from "react-icons/im";
 
 const questions = [
   "Envie-me uma mensagem anônima!",
@@ -20,9 +21,11 @@ export default function DashPage() {
   const { user } = useAuth();
   const [activeSlideQuestion, setActiveSlideQuestion] = useState(0);
   const [questionLink, setQuestionLink] = useState<string | null>(null);
+  const [isGenerateLinkLoading, setIsGenerateLinkLoading] = useState(false);
 
   async function handleGenerateLink() {
     const question = questions[activeSlideQuestion];
+    setIsGenerateLinkLoading(true);
     try {
       const response = await api.post("/questions", {
         question
@@ -40,6 +43,8 @@ export default function DashPage() {
       }
     } catch (err) {
       toast.error("Ocorreu um erro ao gerar o link, tente novamente mais tarde");
+    } finally {
+      setIsGenerateLinkLoading(false);
     }
 
   }
@@ -86,9 +91,10 @@ export default function DashPage() {
         <p className="text-sm text-center text-secondary-500">
           {questionLink ? questionLink : "..."}
         </p>
-        <Button className="w-auto" onClick={handleGenerateLink}>
+        <Button className="w-auto" onClick={handleGenerateLink} disabled={isGenerateLinkLoading}>
           <FiCopy size={16} />
           Gerar Link e copiar
+          {isGenerateLinkLoading && <ImSpinner8 className="animate-spin" size={24} />}
         </Button>
       </div>
 

@@ -24,6 +24,7 @@ export default function CreateAnswerForQuestion({ params }: CreateAnswerForQuest
   const [answer, setAnswer] = useState("");
   const [username, setUsername] = useState("");
   const [step, setStep] = useState(0);
+  const [isSubmitLoading, setIsSubmitLoading] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -49,6 +50,8 @@ export default function CreateAnswerForQuestion({ params }: CreateAnswerForQuest
     if (step === 2) return;
 
     if (step === 1) {
+      setIsSubmitLoading(true);
+
       try {
         await api.post(`/questions/${params.questionId}/answers`, {
           answer,
@@ -56,6 +59,8 @@ export default function CreateAnswerForQuestion({ params }: CreateAnswerForQuest
         });
       } catch (err) {
         toast.error("Erro ao enviar a resposta, por favor tente novamente mais tarde.");
+      } finally {
+        setIsSubmitLoading(false);
       }
     }
 
@@ -86,6 +91,7 @@ export default function CreateAnswerForQuestion({ params }: CreateAnswerForQuest
             username={username}
             onChangeUsername={handleChangeUsername}
             onNextStep={handleNextStep}
+            isSubmitLoading={isSubmitLoading}
         /> }
         { step === 2 && <CongratulationsMessage /> }
       </main>
