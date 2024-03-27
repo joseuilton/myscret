@@ -19,6 +19,7 @@ export default class KnexAdapter implements DatabaseConnection {
           database: process.env.DB_DATABASE,
           user: process.env.DB_USERNAME,
           password: process.env.DB_PASSWORD,
+          ssl: process.env.NODE_ENV === "production"
         }
       })
     } catch (error) {
